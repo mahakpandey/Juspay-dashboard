@@ -12,6 +12,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useTheme } from "next-themes";
+
 
 const getPath = (
   x: number,
@@ -52,6 +54,8 @@ const RoundedBar = (props: BarProps) => {
   );
 };
 export default function CustomStackedBarChart() {
+  const { theme } = useTheme();
+
   const randomStackedBarChartData = useMemo(() => {
     return randomDataGenerator<{
       amt: number;
@@ -83,10 +87,12 @@ export default function CustomStackedBarChart() {
           dataKey="name"
           className="*:*:*:fill-foreground/40 *:*:*:text-[0.75em] *:*:text-[16px]"
           stroke=""
+          tick={{ fill: theme === "dark" ? "#ffffff" : "#000000" }}
         />
         <YAxis
           className="*:*:*:fill-foreground/40 *:*:*:text-[0.75em] *:*:text-[16px]"
           stroke=""
+          tick={{ fill: theme === "dark" ? "#ffffff" : "#000000" }}
         />
         <Tooltip />
         <Bar dataKey="pv" stackId="a" className="fill-secondary-cyan-custom" />

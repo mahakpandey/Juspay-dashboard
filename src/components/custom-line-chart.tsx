@@ -1,5 +1,6 @@
 "use client";
 import { lineChartFields, randomDataGenerator } from "@/lib/random";
+import { useTheme } from "next-themes";
 import React, { useMemo } from "react";
 import {
   CartesianGrid,
@@ -12,6 +13,8 @@ import {
 } from "recharts";
 
 export default function CustomLineChart() {
+  const { theme } = useTheme();
+
   const randomLineChartData = useMemo(() => {
     return randomDataGenerator<{
       amt: number;
@@ -45,11 +48,13 @@ export default function CustomLineChart() {
           dataKey="name"
           className="*:*:*:fill-foreground/40 *:*:*:text-[0.75em] *:*:text-[16px]"
           stroke=""
+          tick={{ fill: theme === "dark" ? "#ffffff" : "#000000" }}
         />
         <YAxis
           width="auto"
           stroke=""
           className="*:*:*:fill-foreground/40 *:*:*:text-[0.75em] *:*:text-[16px]"
+          tick={{ fill: theme === "dark" ? "#ffffff" : "#000000" }}
         />
         <Tooltip />
         {/* <Legend /> */}
